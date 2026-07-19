@@ -1,0 +1,76 @@
+{
+  "en": {
+    "name": "Ehab Shalaby",
+    "jobname": "IT & Networking | Focus on Cybersecurity",
+    "title": "About Me",
+    "about": "I'm Ehab Ali Shalaby, an IT and network enthusiast with a strong interest in digital networking, IT infrastructure, and cybersecurity. <br><br> I hold a Bachelor's degree in Business Information Systems, which provided me with a solid foundation in IT systems, business processes, and technology. <br><br> Through self-study and hands-on projects, I have developed practical knowledge in routing and switching, network security, Linux, Cisco, and Windows environments. I have also studied professional courses such as A+, Network+, Security+, and CCNA.<br><br> I am particularly interested in cybersecurity and how secure network infrastructure plays a key role in protecting modern IT systems. I enjoy continuously learning and staying up to date with new technologies.",
+    "skills": "Skills",
+    "skillsItems": [
+      "Networking Fundamentals: IP addressing, subnetting, routing, switching, VLANs, NAT, DHCP, DNS",
+      "Certifications Studied: CompTIA A+, Network+, Security+, Cisco CCNA",
+      "Network Tools: Cisco Packet Tracer, GNS3",
+      "Troubleshooting & Configuration: Network setup, fault isolation, performance tuning",
+      "Cybersecurity Basics: Network security principles, access control, firewalls, threat awareness",
+      "Technical Skills: Windows OS, basic Linux commands, hardware setup and diagnostics",
+      "Soft Skills: Problem-solving, attention to detail, teamwork, self-learning, time management"
+    ],
+    "projects": "Projects",
+    "allProjects": "All Projects Here",
+    "clickToView": "Click to view all my network projects",
+    "myProjects": "My Projects",
+    "skillsUsed": "Skills Used",
+    "downloadProject": "Download Project",
+    "courses": "Courses & Self-Study",
+    "coursesItems": [
+      "Studied the core content of the following certification tracks:",
+      "CompTIA A+ (Computer hardware, software, troubleshooting)",
+      "CompTIA Network+ (Network fundamentals, protocols, devices, and security)",
+      "CompTIA Security+ (Basic security concepts, threats, and mitigation)",
+      "Cisco CCNA (Routing, switching, IP addressing, VLANs, OSPF)",
+      "Practical lab experience using Packet Tracer, GNS3, and VirtualBox"
+    ],
+    "contact": "Contact",
+    "cv": "Download CV",
+    "email": "E-Mail: ehab.ali.gomaa256@gmail.com",
+    "linkedin": "LinkedIn: linkedin.com/in/ehabali25",
+    "github": "Github: www.github.com/Mre25",
+    "footer": "© 2025 Ehab Ali Shalaby. All rights reserved."
+  },
+  "de": {
+    "name": "Ehab Shalaby",
+    "jobname": "IT- und Netzwerktechnik | Schwerpunkt Cybersecurity",
+    "title": "Über mich",
+    "about": "Ich heiße Shalaby, Ehab Ali und bin ein IT- und Netzwerk-Enthusiast mit großem Interesse an digitaler Vernetzung, IT-Infrastruktur und Cybersecurity. <br><br> Ich habe einen Bachelorabschluss in Wirtschaftsinformatik, der mir eine solide Grundlage in IT-Systemen, Geschäftsprozessen und Technologie vermittelt hat.  <br><br> Durch Selbststudium und praxisnahe Projekte habe ich mir fundierte Kenntnisse in Routing und Switching, Netzwerksicherheit, Linux sowie Cisco- und Windows-Umgebungen angeeignet außerdem habe ich professionelle Kurse wie A+, Network+, Security+ und CCNA absolviert. <br><br> Besonders interessiert mich der Bereich Cybersecurity und die Bedeutung sicherer Netzwerkinfrastrukturen für den Schutz moderner IT-Systeme.",
+    "skills": "Fähigkeiten",
+    "skillsItems": [
+      "Netzwerkgrundlagen: IP-Adressierung, Subnetting, Routing, Switching, VLANs, NAT, DHCP, DNS",
+      "Studierte Zertifizierungen: CompTIA A+, Network+, Security+, Cisco CCNA",
+      "Netzwerktools: Cisco Packet Tracer, GNS3",
+      "Fehlerbehebung & Konfiguration: Netzwerkeinrichtung, Fehlerisolierung, Leistungsoptimierung",
+      "Cybersecurity-Grundlagen: Netzwerksicherheitsprinzipien, Zugangskontrolle, Firewalls, Bedrohungsbewusstsein",
+      "Technische Fähigkeiten: Windows-Betriebssystem, grundlegende Linux-Befehle, Hardwareeinrichtung und Diagnose",
+      "Soft Skills: Problemlösung, Detailgenauigkeit, Teamarbeit, selbstständiges Lernen, Zeitmanagement"
+    ],
+    "projects": "Projekte",
+    "allProjects": "Alle Projekte hier",
+    "clickToView": "Klicken Sie, um alle meine Netzwerkprojekte anzuzeigen",
+    "myProjects": "Meine Projekte",
+    "skillsUsed": "Verwendete Fähigkeiten",
+    "downloadProject": "Projekt herunterladen",
+    "courses": "Kurse & Selbststudium",
+    "coursesItems": [
+      "Studierte die Kerninhalte der folgenden Zertifizierungskurse:",
+      "CompTIA A+ (Computerhardware, Software, Fehlerbehebung)",
+      "CompTIA Network+ (Netzwerkgrundlagen, Protokolle, Geräte und Sicherheit)",
+      "CompTIA Security+ (Grundlegende Sicherheitskonzepte, Bedrohungen und Schadensbegrenzung)",
+      "Cisco CCNA (Routing, Switching, IP-Adressierung, VLANs, OSPF)",
+      "Praktische Laborerfahrung mit Packet Tracer, GNS3 und VirtualBox"
+    ],
+    "contact": "Kontakt",
+    "cv": "Lebenslauf herunterladen",
+    "email": "E-Mail: ehab.ali.gomaa256@gmail.com",
+    "linkedin": "LinkedIn: linkedin.com/in/ehabali25",
+    "github": "Github: www.github.com/Mre25",
+    "footer": "© 2025 Ehab Ali Gomaa. Alle Rechte vorbehalten."
+  }
+}

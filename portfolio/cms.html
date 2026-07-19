@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio CMS - Full Control</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #f0f2f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* تسجيل الدخول */
+        .login-box {
+            max-width: 400px;
+            margin: 100px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+        
+        .login-box h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #1f2937;
+        }
+        
+        .login-box p {
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+        
+        .login-box input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .login-box input:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+        
+        .login-box button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .login-box button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        /* لوحة التحكم */
+        .dashboard {
+            display: none;
+        }
+        
+        .header {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .header h1 {
+            color: #1f2937;
+            font-size: 24px;
+        }
+        
+        .header .user {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .header .user span {
+            color: #6b7280;
+        }
+        
+        .header .user button {
+            padding: 8px 20px;
+            background: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        /* التبويبات */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            padding: 12px 25px;
+            background: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #6b7280;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .tab-btn:hover {
+            background: #f3f4f6;
+        }
+        
+        .tab-btn.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+        
+        /* المحتوى */
+        .tab-content {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #374151;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: border 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        /* قائمة عناصر */
+        .items-list {
+            margin-top: 10px;
+        }
+        
+        .item-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        
+        .item-row input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+        }
+        
+        .item-row .btn-sm {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .item-row .btn-danger {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+        
+        .item-row .btn-danger:hover {
+            background: #fecaca;
+        }
+        
+        .btn-add {
+            padding: 10px 20px;
+            background: #dbeafe;
+            color: #2563eb;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .btn-add:hover {
+            background: #bfdbfe;
+        }
+        
+        /* أزرار الحفظ */
+        .save-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+        }
+        
+        .btn-save {
+            padding: 14px 35px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-save:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+        }
+        
+        .btn-preview {
+            padding: 14px 35px;
+            background: #f3f4f6;
+            color: #374151;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .btn-preview:hover {
+            background: #e5e7eb;
+        }
+        
+        /* حالة التحميل */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+        
+        .loading.active {
+            display: flex;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #e5e7eb;
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* إشعارات */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            z-index: 10000;
+            display: none;
+            animation: slideIn 0.3s;
+        }
+        
+        .notification.success {
+            background: #10b981;
+            display: block;
+        }
+        
+        .notification.error {
+            background: #ef4444;
+            display: block;
+        }
+        
+        .notification.info {
+            background: #3b82f6;
+            display: block;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @media (max-width: 768px) {
+            .row {
+                grid-template-columns: 1fr;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .tabs {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- تسجيل الدخول -->
+    <div class="login-box" id="loginBox">
+        <h1>🔐 Portfolio CMS</h1>
+        <p>Enter your GitHub credentials to manage content</p>
+        
+        <input type="text" id="githubUser" placeholder="GitHub Username (e.g., mre25)" value="mre25">
+        <input type="password" id="githubToken" placeholder="Personal Access Token (ghp_...)">
+        <button onclick="login()">Sign In</button>
+        
+        <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 10px; font-size: 14px; color: #4b5563;">
+            <strong>📌 How to get token:</strong><br>
+            1. GitHub Settings → Developer settings → Personal access tokens<br>
+            2. Generate new token → Select "repo" scope<br>
+            3. Copy the token (starts with ghp_)
+        </div>
+    </div>
+    
+    <!-- لوحة التحكم -->
+    <div class="dashboard" id="dashboard">
+        <div class="container">
+            <!-- Header -->
+            <div class="header">
+                <h1>⚙️ Content Management</h1>
+                <div class="user">
+                    <span id="userName">👤 User</span>
+                    <button onclick="logout()">Logout</button>
+                </div>
+            </div>
+            
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('personal')">📝 Personal</button>
+                <button class="tab-btn" onclick="showTab('about')">📄 About</button>
+                <button class="tab-btn" onclick="showTab('skills')">⭐ Skills</button>
+                <button class="tab-btn" onclick="showTab('courses')">🎓 Courses</button>
+                <button class="tab-btn" onclick="showTab('projects')">🚀 Projects</button>
+                <button class="tab-btn" onclick="showTab('save')">💾 Save</button>
+            </div>
+            
+            <!-- Personal Info -->
+            <div class="tab-content active" id="tab-personal">
+                <h2 style="margin-bottom: 20px;">Personal Information</h2>
+                
+                <div class="row">
+                    <div class="form-group">
+                        <label>Name (English)</label>
+                        <input type="text" id="enName" placeholder="Ehab Shalaby">
+                    </div>
+                    <div class="form-group">
+                        <label>Name (German)</label>
+                        <input type="text" id="deName" placeholder="Ehab Shalaby">
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="form-group">
+                        <label>Job Title (English)</label>
+                        <input type="text" id="enJob" placeholder="IT & Networking | Focus on Cybersecurity">
+                    </div>
+                    <div class="form-group">
+                        <label>Job Title (German)</label>
+                        <input type="text" id="deJob" placeholder="IT- und Netzwerktechnik | Schwerpunkt Cybersecurity">
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="email" placeholder="ehab.ali.gomaa256@gmail.com">
+                    </div>
+                    <div class="form-group">
+                        <label>CV File Path</label>
+                        <input type="text" id="cvPath" placeholder="Projects/Ehab Ali,Junior Network Engineer.pdf">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>LinkedIn URL</label>
+                    <input type="url" id="linkedin" placeholder="https://linkedin.com/in/ehabali25">
+                </div>
+                
+                <div class="form-group">
+                    <label>GitHub URL</label>
+                    <input type="url" id="github" placeholder="https://github.com/Mre25">
+                </div>
+            </div>
+            
+            <!-- About -->
+            <div class="tab-content" id="tab-about">
+                <h2 style="margin-bottom: 20px;">About Me</h2>
+                
+                <div class="form-group">
+                    <label>About Me (English)</label>
+                    <textarea id="enAbout" rows="10" placeholder="I'm Ehab Ali Shalaby, an IT and network enthusiast..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>About Me (German)</label>
+                    <textarea id="deAbout" rows="10" placeholder="Ich heiße Shalaby, Ehab Ali und bin ein IT- und Netzwerk-Enthusiast..."></textarea>
+                </div>
+            </div>
+            
+            <!-- Skills -->
+            <div class="tab-content" id="tab-skills">
+                <h2 style="margin-bottom: 20px;">Skills Management</h2>
+                
+                <div class="row">
+                    <div class="form-group">
+                        <label>Skills Title (English)</label>
+                        <input type="text" id="enSkillsTitle" value="Skills">
+                    </div>
+                    <div class="form-group">
+                        <label>Skills Title (German)</label>
+                        <input type="text" id="deSkillsTitle" value="Fähigkeiten">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Skills (English) - One per line</label>
+                    <textarea id="enSkills" rows="8" placeholder="Networking Fundamentals: IP addressing, subnetting..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Skills (German) - One per line</label>
+                    <textarea id="deSkills" rows="8" placeholder="Netzwerkgrundlagen: IP-Adressierung, Subnetting..."></textarea>
+                </div>
+            </div>
+            
+            <!-- Courses -->
+            <div class="tab-content" id="tab-courses">
+                <h2 style="margin-bottom: 20px;">Courses Management</h2>
+                
+                <div class="row">
+                    <div class="form-group">
+                        <label>Courses Title (English)</label>
+                        <input type="text" id="enCoursesTitle" value="Courses & Self-Study">
+                    </div>
+                    <div class="form-group">
+                        <label>Courses Title (German)</label>
+                        <input type="text" id="deCoursesTitle" value="Kurse & Selbststudium">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Courses (English) - One per line</label>
+                    <textarea id="enCourses" rows="8" placeholder="Studied the core content of the following certification tracks..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Courses (German) - One per line</label>
+                    <textarea id="deCourses" rows="8" placeholder="Studierte die Kerninhalte der folgenden Zertifizierungskurse..."></textarea>
+                </div>
+            </div>
+            
+            <!-- Projects -->
+            <div class="tab-content" id="tab-projects">
+                <h2 style="margin-bottom: 20px;">Projects Management</h2>
+                
+                <div class="row">
+                    <div class="form-group">
+                        <label>Projects Title (English)</label>
+                        <input type="text" id="enProjectsTitle" value="Projects">
+                    </div>
+                    <div class="form-group">
+                        <label>Projects Title (German)</label>
+                        <input type="text" id="deProjectsTitle" value="Projekte">
+                    </div>
+                </div>
+                
+                <div id="projectsList">
+                    <!-- سيتم إنشاء المشاريع بواسطة JavaScript -->
+                </div>
+                
+                <button class="btn-add" onclick="addProject()">➕ Add New Project</button>
+            </div>
+            
+            <!-- Save -->
+            <div class="tab-content" id="tab-save">
+                <h2 style="margin-bottom: 20px;">Save & Publish</h2>
+                
+                <div style="padding: 20px; background: #f0f9ff; border-radius: 10px; margin-bottom: 20px;">
+                    <h3 style="color: #1e40af;">📋 Summary</h3>
+                    <p id="summaryText" style="color: #4b5563; margin-top: 10px;">Loading data...</p>
+                </div>
+                
+                <div class="save-actions">
+                    <button class="btn-preview" onclick="previewData()">👁️ Preview JSON</button>
+                    <button class="btn-save" onclick="saveToGitHub()">🚀 Publish to GitHub</button>
+                </div>
+                
+                <div style="margin-top: 20px; padding: 20px; background: #f8fafc; border-radius: 10px; max-height: 400px; overflow-y: auto; display: none;" id="previewBox">
+                    <h4>Generated Data:</h4>
+                    <pre id="jsonPreview" style="background: #1e293b; color: #e2e8f0; padding: 15px; border-radius: 8px; margin-top: 10px; font-size: 13px;"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Loading -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+    
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <span id="notifText">Success!</span>
+    </div>
+    
+    <script>
+        // المتغيرات العامة
+        let githubToken = '';
+        let githubUser = 'mre25';
+        let portfolioData = {};
+        let projects = [];
+        let isLoggedIn = false;
+        
+        // دالة تسجيل الدخول
+        async function login() {
+            const user = document.getElementById('githubUser').value.trim();
+            const token = document.getElementById('githubToken').value.trim();
+            
+            if (!user || !token) {
+                showNotification('Please enter both username and token', 'error');
+                return;
+            }
+            
+            showLoading(true);
+            
+            try {
+                const response = await fetch('https://api.github.com/user', {
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+                
+                if (response.ok) {
+                    githubUser = user;
+                    githubToken = token;
+                    isLoggedIn = true;
+                    
+                    document.getElementById('loginBox').style.display = 'none';
+                    document.getElementById('dashboard').style.display = 'block';
+                    document.getElementById('userName').textContent = `👤 ${user}`;
+                    
+                    await loadData();
+                    showNotification('Successfully logged in!', 'success');
+                } else {
+                    throw new Error('Invalid credentials');
+                }
+            } catch (error) {
+                showNotification('Login failed: ' + error.message, 'error');
+            } finally {
+                showLoading(false);
+            }
+        }
+        
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                isLoggedIn = false;
+                githubToken = '';
+                document.getElementById('dashboard').style.display = 'none';
+                document.getElementById('loginBox').style.display = 'block';
+                document.getElementById('githubToken').value = '';
+            }
+        }
+        
+        // تحميل البيانات
+        async function loadData() {
+            showLoading(true);
+            
+            try {
+                // تحميل content.json
+                const contentRes = await fetch('data/content.json?t=' + new Date().getTime());
+                if (contentRes.ok) {
+                    portfolioData = await contentRes.json();
+                } else {
+                    portfolioData = getDefaultData();
+                }
+                
+                // تحميل projects.json
+                const projectsRes = await fetch('data/projects.json?t=' + new Date().getTime());
+                if (projectsRes.ok) {
+                    projects = await projectsRes.json();
+                } else {
+                    projects = getDefaultProjects();
+                }
+                
+                populateForm();
+                renderProjects();
+                updateSummary();
+                
+            } catch (error) {
+                console.error('Error loading data:', error);
+                portfolioData = getDefaultData();
+                projects = getDefaultProjects();
+                populateForm();
+                renderProjects();
+                updateSummary();
+                showNotification('Using default data', 'info');
+            } finally {
+                showLoading(false);
+            }
+        }
+        
+        // بيانات افتراضية
+        function getDefaultData() {
+            return {
+                en: {
+                    name: "Ehab Shalaby",
+                    jobname: "IT & Networking | Focus on Cybersecurity",
+                    title: "About Me",
+                    about: "I'm Ehab Ali Shalaby...",
+                    skills: "Skills",
+                    skillsItems: ["Networking Fundamentals: IP addressing, subnetting..."],
+                    projects: "Projects",
+                    allProjects: "All Projects Here",
+                    clickToView: "Click to view all my network projects",
+                    myProjects: "My Projects",
+                    skillsUsed: "Skills Used",
+                    downloadProject: "Download Project",
+                    courses: "Courses & Self-Study",
+                    coursesItems: ["Studied the core content..."],
+                    contact: "Contact",
+                    cv: "Download CV",
+                    email: "E-Mail: ehab.ali.gomaa256@gmail.com",
+                    linkedin: "LinkedIn: linkedin.com/in/ehabali25",
+                    github: "Github: www.github.com/Mre25",
+                    footer: "© 2025 Ehab Ali Shalaby. All rights reserved."
+                },
+                de: {
+                    name: "Ehab Shalaby",
+                    jobname: "IT- und Netzwerktechnik | Schwerpunkt Cybersecurity",
+                    title: "Über mich",
+                    about: "Ich heiße Shalaby, Ehab Ali...",
+                    skills: "Fähigkeiten",
+                    skillsItems: ["Netzwerkgrundlagen: IP-Adressierung, Subnetting..."],
+                    projects: "Projekte",
+                    allProjects: "Alle Projekte hier",
+                    clickToView: "Klicken Sie, um alle meine Netzwerkprojekte anzuzeigen",
+                    myProjects: "Meine Projekte",
+                    skillsUsed: "Verwendete Fähigkeiten",
+                    downloadProject: "Projekt herunterladen",
+                    courses: "Kurse & Selbststudium",
+                    coursesItems: ["Studierte die Kerninhalte..."],
+                    contact: "Kontakt",
+                    cv: "Lebenslauf herunterladen",
+                    email: "E-Mail: ehab.ali.gomaa256@gmail.com",
+                    linkedin: "LinkedIn: linkedin.com/in/ehabali25",
+                    github: "Github: www.github.com/Mre25",
+                    footer: "© 2025 Ehab Ali Gomaa. Alle Rechte vorbehalten."
+                }
+            };
+        }
+        
+        function getDefaultProjects() {
+            return [
+                {
+                    id: "project1",
+                    en: { title: "Network Design with Two Switches", description: "In this project...", skills: "VLAN Configuration..." },
+                    de: { title: "Netzwerkkonzeption mit zwei Switches", description: "In diesem Projekt...", skills: "VLAN-Konfiguration..." },
+                    image: "photos/2swi.jpeg",
+                    file: "Projects/1Rw with 3Sw.pkt"
+                }
+            ];
+        }
+        
+        // تعبئة النموذج
+        function populateForm() {
+            const en = portfolioData.en || {};
+            const de = portfolioData.de || {};
+            
+            document.getElementById('enName').value = en.name || '';
+            document.getElementById('deName').value = de.name || '';
+            document.getElementById('enJob').value = en.jobname || '';
+            document.getElementById('deJob').value = de.jobname || '';
+            document.getElementById('enAbout').value = en.about || '';
+            document.getElementById('deAbout').value = de.about || '';
+            
+            document.getElementById('enSkillsTitle').value = en.skills || 'Skills';
+            document.getElementById('deSkillsTitle').value = de.skills || 'Fähigkeiten';
+            document.getElementById('enSkills').value = (en.skillsItems || []).join('\n');
+            document.getElementById('deSkills').value = (de.skillsItems || []).join('\n');
+            
+            document.getElementById('enCoursesTitle').value = en.courses || 'Courses & Self-Study';
+            document.getElementById('deCoursesTitle').value = de.courses || 'Kurse & Selbststudium';
+            document.getElementById('enCourses').value = (en.coursesItems || []).join('\n');
+            document.getElementById('deCourses').value = (de.coursesItems || []).join('\n');
+            
+            document.getElementById('enProjectsTitle').value = en.projects || 'Projects';
+            document.getElementById('deProjectsTitle').value = de.projects || 'Projekte';
+            
+            const email = en.email?.replace('E-Mail: ', '') || '';
+            const linkedin = en.linkedin?.replace('LinkedIn: ', '') || '';
+            const github = en.github?.replace('Github: ', '') || '';
+            
+            document.getElementById('email').value = email;
+            document.getElementById('linkedin').value = linkedin;
+            document.getElementById('github').value = github;
+            document.getElementById('cvPath').value = en.cv ? en.cv.replace('Download CV', '').trim() : 'Projects/Ehab Ali,Junior Network Engineer.pdf';
+        }
+        
+        // عرض المشاريع
+        function renderProjects() {
+            const container = document.getElementById('projectsList');
+            container.innerHTML = '';
+            
+            projects.forEach((project, index) => {
+                const div = document.createElement('div');
+                div.style.cssText = 'border: 2px solid #e5e7eb; border-radius: 10px; padding: 20px; margin-bottom: 20px;';
+                
+                div.innerHTML = `
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;">
+                        <h4 style="color:#1f2937;">Project #${index + 1}</h4>
+                        <button onclick="removeProject(${index})" style="background:#fee2e2;color:#dc2626;border:none;padding:8px 15px;border-radius:6px;cursor:pointer;">🗑️ Remove</button>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="form-group">
+                            <label>Title (English)</label>
+                            <input type="text" id="proj_${index}_en_title" value="${project.en.title || ''}" placeholder="Project title">
+                        </div>
+                        <div class="form-group">
+                            <label>Title (German)</label>
+                            <input type="text" id="proj_${index}_de_title" value="${project.de.title || ''}" placeholder="Projekttitel">
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="form-group">
+                            <label>Description (English)</label>
+                            <textarea id="proj_${index}_en_desc" rows="3" placeholder="Project description...">${project.en.description || ''}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Description (German)</label>
+                            <textarea id="proj_${index}_de_desc" rows="3" placeholder="Projektbeschreibung...">${project.de.description || ''}</textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="form-group">
+                            <label>Skills (English)</label>
+                            <input type="text" id="proj_${index}_en_skills" value="${project.en.skills || ''}" placeholder="Skills used">
+                        </div>
+                        <div class="form-group">
+                            <label>Skills (German)</label>
+                            <input type="text" id="proj_${index}_de_skills" value="${project.de.skills || ''}" placeholder="Verwendete Fähigkeiten">
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="form-group">
+                            <label>Image Path</label>
+                            <input type="text" id="proj_${index}_image" value="${project.image || ''}" placeholder="photos/project.jpg">
+                        </div>
+                        <div class="form-group">
+                            <label>File Path</label>
+                            <input type="text" id="proj_${index}_file" value="${project.file || ''}" placeholder="Projects/project.pkt">
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(div);
+            });
+        }
+        
+        // إضافة مشروع جديد
+        function addProject() {
+            projects.push({
+                id: 'project' + (projects.length + 1),
+                en: { title: 'New Project', description: 'Description...', skills: 'Skills...' },
+                de: { title: 'Neues Projekt', description: 'Beschreibung...', skills: 'Fähigkeiten...' },
+                image: 'photos/default.jpg',
+                file: 'Projects/default.pkt'
+            });
+            renderProjects();
+            updateSummary();
+            showNotification('New project added', 'info');
+        }
+        
+        // حذف مشروع
+        function removeProject(index) {
+            if (confirm('Are you sure you want to remove this project?')) {
+                projects.splice(index, 1);
+                renderProjects();
+                updateSummary();
+                showNotification('Project removed', 'info');
+            }
+        }
+        
+        // جمع البيانات من النموذج
+        function collectData() {
+            const en = {
+                name: document.getElementById('enName').value,
+                jobname: document.getElementById('enJob').value,
+                title: "About Me",
+                about: document.getElementById('enAbout').value,
+                skills: document.getElementById('enSkillsTitle').value || 'Skills',
+                skillsItems: document.getElementById('enSkills').value.split('\n').filter(s => s.trim()),
+                projects: document.getElementById('enProjectsTitle').value || 'Projects',
+                allProjects: "All Projects Here",
+                clickToView: "Click to view all my network projects",
+                myProjects: "My Projects",
+                skillsUsed: "Skills Used",
+                downloadProject: "Download Project",
+                courses: document.getElementById('enCoursesTitle').value || 'Courses & Self-Study',
+                coursesItems: document.getElementById('enCourses').value.split('\n').filter(s => s.trim()),
+                contact: "Contact",
+                cv: "Download CV",
+                email: "E-Mail: " + document.getElementById('email').value,
+                linkedin: "LinkedIn: " + document.getElementById('linkedin').value,
+                github: "Github: " + document.getElementById('github').value,
+                footer: "© 2025 Ehab Ali Shalaby. All rights reserved."
+            };
+            
+            const de = {
+                name: document.getElementById('deName').value,
+                jobname: document.getElementById('deJob').value,
+                title: "Über mich",
+                about: document.getElementById('deAbout').value,
+                skills: document.getElementById('deSkillsTitle').value || 'Fähigkeiten',
+                skillsItems: document.getElementById('deSkills').value.split('\n').filter(s => s.trim()),
+                projects: document.getElementById('deProjectsTitle').value || 'Projekte',
+                allProjects: "Alle Projekte hier",
+                clickToView: "Klicken Sie, um alle meine Netzwerkprojekte anzuzeigen",
+                myProjects: "Meine Projekte",
+                skillsUsed: "Verwendete Fähigkeiten",
+                downloadProject: "Projekt herunterladen",
+                courses: document.getElementById('deCoursesTitle').value || 'Kurse & Selbststudium',
+                coursesItems: document.getElementById('deCourses').value.split('\n').filter(s => s.trim()),
+                contact: "Kontakt",
+                cv: "Lebenslauf herunterladen",
+                email: "E-Mail: " + document.getElementById('email').value,
+                linkedin: "LinkedIn: " + document.getElementById('linkedin').value,
+                github: "Github: " + document.getElementById('github').value,
+                footer: "© 2025 Ehab Ali Gomaa. Alle Rechte vorbehalten."
+            };
+            
+            // إضافة المشاريع
+            const projectData = [];
+            projects.forEach((proj, index) => {
+                projectData.push({
+                    id: proj.id || 'project' + (index + 1),
+                    en: {
+                        title: document.getElementById(`proj_${index}_en_title`)?.value || '',
+                        description: document.getElementById(`proj_${index}_en_desc`)?.value || '',
+                        skills: document.getElementById(`proj_${index}_en_skills`)?.value || ''
+                    },
+                    de: {
+                        title: document.getElementById(`proj_${index}_de_title`)?.value || '',
+                        description: document.getElementById(`proj_${index}_de_desc`)?.value || '',
+                        skills: document.getElementById(`proj_${index}_de_skills`)?.value || ''
+                    },
+                    image: document.getElementById(`proj_${index}_image`)?.value || '',
+                    file: document.getElementById(`proj_${index}_file`)?.value || ''
+                });
+            });
+            
+            return { en, de, projects: projectData };
+        }
+        
+        // تحديث الملخص
+        function updateSummary() {
+            const data = collectData();
+            const totalSkills = data.en.skillsItems.length + data.de.skillsItems.length;
+            const totalCourses = data.en.coursesItems.length + data.de.coursesItems.length;
+            
+            document.getElementById('summaryText').innerHTML = `
+                <strong>📊 Content Summary:</strong><br>
+                • Personal Info: ✅ English & German<br>
+                • About Me: ✅ English & German<br>
+                • Skills: ${data.en.skillsItems.length} (EN) + ${data.de.skillsItems.length} (DE)<br>
+                • Courses: ${data.en.coursesItems.length} (EN) + ${data.de.coursesItems.length} (DE)<br>
+                • Projects: ${projects.length} projects<br>
+                • Total fields: ${Object.keys(data.en).length + Object.keys(data.de).length}
+            `;
+        }
+        
+        //

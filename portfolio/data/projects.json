@@ -1,0 +1,62 @@
+[
+  {
+    "id": "project1",
+    "en": {
+      "title": "Network Design with Two Switches and VLAN Implementation",
+      "description": "In this project, a network was designed using two switches connected via a trunk link. End devices were distributed across both switches and assigned to different VLANs based on departmental segmentation. The aim was to improve network performance and security through logical separation. Trunk ports were configured to allow inter-VLAN communication between switches.",
+      "skills": "VLAN Configuration, Access and Trunk Port Setup, Switch-to-Switch Trunking, Network Segmentation"
+    },
+    "de": {
+      "title": "Netzwerkkonzeption mit zwei Switches und VLAN-Implementierung",
+      "description": "In diesem Projekt wurde ein Netzwerk mit zwei Switches entworfen, die über eine Trunk-Verbindung miteinander verbunden sind. Die Endgeräte wurden auf beide Switches verteilt und verschiedenen VLANs je nach Abteilung zugeordnet. Ziel war es, die Netzwerkleistung und Sicherheit durch logische Segmentierung zu verbessern. Trunk-Ports wurden konfiguriert, um die VLAN-Kommunikation zwischen den Switches zu ermöglichen.",
+      "skills": "VLAN-Konfiguration, Einrichtung von Access- und Trunk-Ports, Switch-zu-Switch-Trunking, Netzwerksegmentierung"
+    },
+    "image": "photos/2swi.jpeg",
+    "file": "Projects/1Rw with 3Sw.pkt"
+  },
+  {
+    "id": "project2",
+    "en": {
+      "title": "Network Design Using Three Routers with Static Routing",
+      "description": "This project involves designing a network topology with three routers connected through serial interfaces to simulate WAN communication. Each router connects to a separate LAN, and static routing was configured to enable inter-network communication. This setup reflects real-world branch connectivity across distant locations.",
+      "skills": "Static Routing Configuration, Serial Interface Setup, Subnetting, WAN Design Concepts"
+    },
+    "de": {
+      "title": "Netzwerkkonzeption mit drei Routern und statischem Routing",
+      "description": "Dieses Projekt umfasst die Gestaltung einer Netzwerktopologie mit drei Routern, die über serielle Schnittstellen verbunden sind, um die WAN-Kommunikation zu simulieren. Jeder Router ist mit einem eigenen LAN verbunden, und es wurde statisches Routing konfiguriert, um die Kommunikation zwischen den Netzwerken zu ermöglichen. Diese Struktur spiegelt reale Filialverbindungen über entfernte Standorte wider.",
+      "skills": "Konfiguration von statischem Routing, Einrichtung serieller Schnittstellen, Subnetting, WAN-Konzepte"
+    },
+    "image": "photos/3rou.jpeg",
+    "file": "Projects/3Rw with 2Ne.pkt"
+  },
+  {
+    "id": "project3",
+    "en": {
+      "title": "VLAN Implementation with Inter-VLAN Routing",
+      "description": "This project features a comprehensive VLAN setup on a LAN network. End devices were segmented by departments using VLANs. A router-on-a-stick method was implemented for inter-VLAN routing, allowing communication between different VLANs through a single router interface. This project demonstrates practical application of VLANs in enterprise environments.",
+      "skills": "VLAN and Inter-VLAN Routing, Access and Trunk Port Configuration, Router-on-a-Stick Implementation, Network Testing (Ping, CLI Commands)"
+    },
+    "de": {
+      "title": "VLAN-Implementierung mit Inter-VLAN-Routing",
+      "description": "Dieses Projekt beinhaltet eine umfassende VLAN-Struktur innerhalb eines LANs. Die Endgeräte wurden nach Abteilungen mithilfe von VLANs segmentiert. Für die Kommunikation zwischen den VLANs wurde das 'Router-on-a-Stick'-Verfahren implementiert, wobei die Kommunikation über eine einzige Router-Schnittstelle erfolgt. Dieses Projekt zeigt die praktische Anwendung von VLANs in Unternehmensnetzwerken.",
+      "skills": "VLAN- und Inter-VLAN-Routing, Konfiguration von Access- und Trunk-Ports, Implementierung von Router-on-a-Stick, Netzwerktests (Ping, CLI-Befehle)"
+    },
+    "image": "photos/vlan.jpeg",
+    "file": "Projects/With vlan.pkt"
+  },
+  {
+    "id": "project4",
+    "en": {
+      "title": "Network Design with Three Routers and Subnet Segmentation",
+      "description": "In this project, a network was designed using three routers, each connected to a local switch and a group of PCs. The network is divided into three main subnets, each representing a different department or location. Routers are interconnected to enable communication between the subnets using point-to-point links. Each subnet uses a /18 subnet mask for efficient IP management and scalability.",
+      "skills": "IP Subnetting, Router Configuration, Switch Setup, Inter-router Communication, Network Segmentation"
+    },
+    "de": {
+      "title": "Netzwerkdesign mit drei Routern und Subnetz-Segmentierung",
+      "description": "In diesem Projekt wurde ein Netzwerk mit drei Routern entworfen, wobei jeder Router mit einem lokalen Switch und einer Gruppe von PCs verbunden ist. Das Netzwerk ist in drei Haupt-Subnetze unterteilt, die jeweils eine Abteilung oder einen Standort repräsentieren. Die Router sind über Punkt-zu-Punkt-Verbindungen miteinander verbunden, um die Kommunikation zwischen den Subnetzen zu ermöglichen. Jedes Subnetz verwendet eine /18-Subnetzmaske für eine effiziente IP-Verwaltung und Skalierbarkeit.",
+      "skills": "IP-Subnetting, Router-Konfiguration, Switch-Einrichtung, Inter-Router-Kommunikation, Netzwerksegmentierung"
+    },
+    "image": "photos/3Rw.jpeg",
+    "file": "Projects/3Rw with 3Ne.pkt"
+  }
+]

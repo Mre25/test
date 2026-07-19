@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <img src="photos/me.jpeg" alt="Ehab Ali Photo">
+    <h1 id="name">Ehab Shalaby</h1>
+    <h2 id="jobname">IT & Networking | Focus on Cybersecurity</h2>
+  </header>
+  
+  <nav>
+    <button onclick="setLanguage('en')">English</button>
+    <button onclick="setLanguage('de')">Deutsch</button>
+    <a href="https://mre25-portfolio-admin.netlify.app/admin/" 
+       target="_blank" 
+       style="background: linear-gradient(to right, #8b5cf6, #7c3aed); 
+              color: white; 
+              padding: 10px 20px; 
+              border-radius: 20px; 
+              text-decoration: none;
+              margin-left: 10px;
+              display: inline-flex;
+              align-items: center;
+              gap: 8px;
+              border: none;
+              font-weight: bold;
+              cursor: pointer;
+              transition: transform 0.3s;">
+      <span>⚙️</span> إدارة المحتوى
+    </a>
+  </nav>
+  
+  <section>
+    <div class="card">
+      <h2 id="title">About Me</h2>
+      <p id="about"></p>
+    </div>
+    
+    <div class="card">
+      <h3 id="skills-title">Skills</h3>
+      <div id="skills-list-container">
+        <ul id="skills-list">
+        </ul>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h3 id="projects-title">Projects</h3>
+      <div class="projects-cover" onclick="openProjectsGallery()">
+        <img src="photos/Network.jpeg" alt="All Projects">
+        <div class="cover-overlay">
+          <h3 id="all-projects-text">All Projects Here</h3>
+          <p id="click-to-view-text">Click to view all my network projects</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h3 id="cours-title">Courses & Self-Study</h3>
+      <div id="courses-list-container">
+        <ul id="courses-list">
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 id="contact-title">Contact</h3>
+      <p id="email-text"></p>
+      <p id="linkedin-text"></p>
+      <p id="github-text"></p>
+      <a id="cv-btn" class="cv-btn" href="Projects/Ehab Ali,Junior Network Engineer.pdf" download>Download CV</a>
+    </div>
+  </section>
+
+  <!-- Projects Gallery Lightbox -->
+  <div id="projects-gallery" class="projects-lightbox">
+    <div class="gallery-content">
+      <span class="close-gallery" onclick="closeProjectsGallery()">&times;</span>
+      <h3 id="my-projects-text">My Projects</h3>
+      
+      <div class="project-container" id="projects-container">
+        <!-- سيتم إنشاء المشاريع بواسطة JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p id="footer-text">© 2025 Ehab Ali Gomaa. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

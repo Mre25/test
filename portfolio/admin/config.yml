@@ -1,0 +1,55 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "photos"
+public_folder: "/photos"
+
+collections:
+  - name: "content"
+    label: "📝 محتوى الموقع"
+    editor:
+      preview: false
+    files:
+      - name: "general"
+        label: "النصوص العامة"
+        file: "data/content.json"
+        fields:
+          - label: "🇬🇧 المحتوى بالإنجليزية"
+            name: "en"
+            widget: "object"
+            fields:
+              - { label: "الاسم", name: "name", widget: "string" }
+              - { label: "المسمى الوظيفي", name: "jobname", widget: "string" }
+              - { label: "عنوان القسم", name: "title", widget: "string", default: "About Me" }
+              - { label: "نبذة عني", name: "about", widget: "markdown" }
+              - { label: "عنوان المهارات", name: "skills", widget: "string", default: "Skills" }
+              - { label: "قائمة المهارات", name: "skillsItems", widget: "list", field: { label: "مهارة", name: "skill", widget: "string" } }
+              - { label: "عنوان المشاريع", name: "projects", widget: "string", default: "Projects" }
+              - { label: "نص جميع المشاريع", name: "allProjects", widget: "string", default: "All Projects Here" }
+              - { label: "نص الضغط للعرض", name: "clickToView", widget: "string", default: "Click to view all my network projects" }
+              - { label: "مشاريعي", name: "myProjects", widget: "string", default: "My Projects" }
+              - { label: "المهارات المستخدمة", name: "skillsUsed", widget: "string", default: "Skills Used" }
+              - { label: "تحميل المشروع", name: "downloadProject", widget: "string", default: "Download Project" }
+              - { label: "عنوان الكورسات", name: "courses", widget: "string", default: "Courses & Self-Study" }
+              - { label: "قائمة الكورسات", name: "coursesItems", widget: "list", field: { label: "كورس", name: "course", widget: "string" } }
+              - { label: "جهة الاتصال", name: "contact", widget: "string", default: "Contact" }
+              - { label: "تحميل السيرة الذاتية", name: "cv", widget: "string", default: "Download CV" }
+              - { label: "البريد الإلكتروني", name: "email", widget: "string" }
+              - { label: "لينكد إن", name: "linkedin", widget: "string" }
+              - { label: "جيثب", name: "github", widget: "string" }
+              - { label: "نص الفوتر", name: "footer", widget: "string" }
+          
+          - label: "🇩🇪 المحتوى بالألمانية"
+            name: "de"
+            widget: "object"
+            fields:
+              - { label: "الاسم", name: "name", widget: "string" }
+              - { label: "المسمى الوظيفي", name: "jobname", widget: "string" }
+              - { label: "عنوان القسم", name: "title", widget: "string", default: "Über mich" }
+              - { label: "نبذة عني", name: "about", widget: "markdown" }
+              - { label: "عنوان المهارات", name: "skills", widget: "string", default: "Fähigkeiten" }
+              - { label: "قائمة المهارات", name: "skillsItems", widget: "list", field: { label: "مهارة", name: "skill", widget: "string" } }
+              - { label: "عنوان المشاريع", name: "projects", widget: "string", default: "Projekte" }
+              - { label: "نص جميع المشاريع", name: "allProjects", widget: "string", default: "Alle Projekte hier" }
+              - { label: "نص الضغط للعرض", name: "clickToView", widget: "string", default: "K
